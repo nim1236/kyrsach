@@ -1,10 +1,16 @@
+<?php
+// Открываем лог-файл для добавления записи
+$log_file = 'server_logs.txt';
+$log_message = date('Y-m-d H:i:s') . ' - ' . $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . ' ' . $_SERVER['REMOTE_ADDR'] . PHP_EOL;
+file_put_contents($log_file, $log_message, FILE_APPEND);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width-sevice-width, initial-scale-1.0">
-        <title>Sign Up</title>
+        <title>Регистрация</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <style>
         .container {
@@ -61,37 +67,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Register</h2>
-                    <p>Please fill this form to create an account.</p>
+                    <h2>Регистрация</h2>
+                    <p>Пожалуйста,заполните форму для создания аккаунта.</p>
                     <form action="regist.php" method="post" onsubmit="return validatePassword()">
                         <div class="form-group">
-                            <label>Full Name</label>
+                            <label>Имя</label>
                             <input type="text" name="name" class="form-control" ><!--required говорит нам что поле должно быть обязательно заполнено перед отправкой формы иначе выдаст ошибку -->
                         </div>    
                         <div class="form-group">
-                            <label>Email Address</label>
+                            <label>Почта</label>
                             <input type="email" name="email" class="form-control" />
                         </div>    
                         <div class="form-group">
-                        <label>Password</label>
+                        <label>Пароль</label>
                         <div class="input-group">
                             <input type="password" id="password" name="password" class="form-control" >
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">Показать</button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Confirm Password</label>
+                        <label>Повтор пароля</label>
                         <div class="input-group">
                             <input type="password" id="confirmPassword" name="confirm_password" class="form-control" >
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">Show</button>
+                                <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">Показать</button>
                             </div>
                         </div>
                     </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-primary" value="Submit" onclick="return validatePassword()">
+                            <input type="submit" name="Зарегистрироваться" class="btn btn-primary" value="Submit" onclick="return validatePassword()">
                         </div>
                         <p>Уже был тут? <a href="login.php">Входи</a>.</p>
                     </form>
@@ -135,20 +141,20 @@
         var passwordInput = document.getElementById("password");
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            this.textContent = "Hide";
+            this.textContent = "Спрятать";
         } else {
             passwordInput.type = "password";
-            this.textContent = "Show";
+            this.textContent = "Показать";
         }
     });
     document.getElementById("toggleConfirmPassword").addEventListener("click", function() {
         var confirmPasswordInput = document.getElementById("confirmPassword");
         if (confirmPasswordInput.type === "password") {
             confirmPasswordInput.type = "text";
-            this.textContent = "Hide";
+            this.textContent = "Спрятать";
         } else {
             confirmPasswordInput.type = "password";
-            this.textContent = "Show";
+            this.textContent = "Показать";
         }
     });
 </script>   
